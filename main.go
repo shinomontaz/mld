@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
-	"mld/reader"
+	"mld/osm"
 )
 
 func main() {
-	r := reader.New("./monaco.osm.pbf")
-	r.Read()
+	data, err := osm.Read("./monaco.osm.pbf")
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("Nodes:", len(data.Nodes))
+	fmt.Println("Ways:", len(data.Ways))
 
 	// 1. читаем
 
