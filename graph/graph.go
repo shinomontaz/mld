@@ -22,6 +22,8 @@ const (
 type Edge struct {
 	From, To NodeID
 	Distance float64
+	Duration float64
+	Weight   float64 // Duration со штрафами
 
 	Direction Direction
 
@@ -125,7 +127,7 @@ func createEdges(osmData *osm.Data, intersections map[int64]bool) []Edge {
 				OSMId:     w.Id,
 				Tags:      w.Tags,
 				Direction: getDirection(w.Tags),
-				Distance:  0, // TODO: calculate distance
+				// TODO: calculate distance
 				// можно использовать от w.Nodes[wints[i]] до w.Nodes[wints[i+1]]
 			})
 
